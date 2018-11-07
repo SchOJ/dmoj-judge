@@ -1,0 +1,4 @@
+id: ExampleJudge
+key: "The_key_you_set_in_admin_paneL"
+problem_storage_root:
+  - /problems
