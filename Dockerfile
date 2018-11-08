@@ -2,8 +2,7 @@ FROM cgswong/min-jessie:latest
 
 RUN groupadd -r judge && \
     useradd -r -g judge judge
-RUN sed -i 's/http.debian.net/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
-    apt-get -y update && \
+RUN apt-get -y update && \
     apt-get install -y --no-install-recommends python python2.7-dev python3 gcc g++ wget file nano vim && \
     apt-get clean
 RUN wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | python && \
