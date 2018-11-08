@@ -11,9 +11,7 @@ RUN wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | py
     rm -rf ~/.cache
 RUN mkdir /problems
 
-COPY . /judge
-WORKDIR /judge
-
 ADD config.yml /
+RUN dmoj-autoconf -s >> /config.yml
 
 CMD dmoj -c /config.yml site
