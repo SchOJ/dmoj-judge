@@ -31,4 +31,6 @@ RUN apt-get clean && \
     dmoj-autoconf >> /config.yml && \
     mkdir /problems
 
-CMD su judge -c 'dmoj -c /config.yml site $JUDGE_NAME $JUDGE_KEY'
+ADD startup.sh /
+
+CMD sh /startup.sh
