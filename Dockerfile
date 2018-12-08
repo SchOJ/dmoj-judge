@@ -9,7 +9,7 @@ RUN groupadd -r judge && \
     wget -q -O- https://bootstrap.pypa.io/get-pip.py | python
 
 # Extra language configurations. Choose what you want.
-RUN ghc openjdk-11-jre-headless lua5.3 && \
+RUN apt-get install -y ghc openjdk-11-jre-headless lua5.3 && \
     wget https://downloads.lightbend.com/scala/2.12.8/scala-2.12.8.deb && \
     dpkg -i scala-2.12.8.deb && \
     rm scala-2.12.8.deb && \
