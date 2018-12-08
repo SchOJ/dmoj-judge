@@ -19,7 +19,7 @@ RUN apt-get install -y ghc openjdk-11-jdk-headless lua5.3 clang julia && \
     apt-get install -y cargo rustc curl gnupg2 && \
     curl -sL "https://keybase.io/crystal/pgp_keys.asc" | apt-key add - && \
     echo "deb https://dist.crystal-lang.org/apt crystal main" >> /etc/apt/sources.list && \
-    sudo apt-get update && \
+    apt-get update && \
     apt-get install -y crystal
 
 WORKDIR /judge
