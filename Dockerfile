@@ -1,16 +1,25 @@
-FROM cgswong/min-jessie:latest
+FROM ubuntu:disco
+
+ENV JUDGE_NAME='judger'
+ENV JUDGE_KEY='The_key_you_set_in_admin_paneL'
+ENV JUDGE_SITE='site'
 
 RUN groupadd -r judge && \
-    useradd -r -g judge judge
-RUN sed -i 's/http.debian.net/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+    useradd -r -g judge judge && \
+    apt dist-upgrade -y && \
     apt-get -y update && \
-    apt-get install -y --no-install-recommends python python2.7-dev python3 gcc g++ wget file nano vim && \
-    apt-get clean
-RUN wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | python && \
-    pip install --no-cache-dir pyyaml watchdog cython ansi2html termcolor dmoj && \
-    rm -rf ~/.cache
-RUN mkdir /problems
+    apt-get install -y --no-install-recommends python python2.7-dev python3 gcc g++ wget file nano vim git ca-certificates && \
+    wget -q -O- https://bootstrap.pypa.io/get-pip.py | python
 
-ADD config.yml /
+WORKDIR /judge
+RUN apt-get clean && \
+    git clone https://github.com/schoj/judge /judge && \
+    pip install cython && \
+    python setup.py develop && \
+    pip install . && \
+    dmoj-autoconf >> /config.yml && \
+    mkdir /problems
 
-CMD dmoj -c /config.yml site
+ADD startup.sh /
+
+CMD sh /startup.sh
