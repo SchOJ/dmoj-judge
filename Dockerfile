@@ -2,6 +2,7 @@ FROM ubuntu:disco
 
 ENV JUDGE_NAME='judger'
 ENV JUDGE_KEY='The_key_you_set_in_admin_paneL'
+ENV JUDGE_SITE='site'
 
 RUN groupadd -r judge && \
     useradd -r -g judge judge && \
