@@ -13,7 +13,7 @@ RUN groupadd -r judge && \
     wget -q -O- https://bootstrap.pypa.io/get-pip.py | python
 
 # Extra language configurations. Choose what you want.
-RUN apt-get install -y ghc openjdk-11-jdk-headless lua5.3 clang julia && \
+RUN apt-get install -y haskell-platform openjdk-11-jdk-headless lua5.3 clang julia nodejs coffeescript&& \
     wget https://downloads.lightbend.com/scala/2.12.8/scala-2.12.8.deb && \
     dpkg -i scala-2.12.8.deb && \
     rm scala-2.12.8.deb && \
@@ -24,7 +24,7 @@ RUN apt-get install -y ghc openjdk-11-jdk-headless lua5.3 clang julia && \
     apt-get install -y crystal
 
 WORKDIR /judge
-RUN apt-get clean && \
+RUN apt autoremove -y && apt-get clean && \
     git clone https://github.com/schoj/judge /judge && \
     pip install cython && \
     python setup.py develop && \
@@ -34,4 +34,3 @@ RUN apt-get clean && \
 
 ADD startup.sh /
 
-CMD sh /startup.sh
