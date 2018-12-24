@@ -6,6 +6,7 @@ ENV JUDGE_SITE='site'
 
 RUN groupadd -r judge && \
     useradd -r -g judge judge && \
+    sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     apt dist-upgrade -y && \
     apt-get -y update && \
     apt-get install -y --no-install-recommends python python2.7-dev python3 gcc g++ wget file nano vim git ca-certificates && \
