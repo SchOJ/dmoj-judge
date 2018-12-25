@@ -24,8 +24,9 @@ RUN apt-get install -y haskell-platform openjdk-11-jdk-headless lua5.3 clang jul
     apt-get install -y crystal
 
 WORKDIR /judge
+<<<<<<< HEAD
 RUN apt-get autoremove -y && apt-get clean && \
-    git clone https://github.com/schoj/judge /judge && \
+    git clone https://github.com/schoj/judge /judge --depth=1 && \
     pip install cython && \
     python setup.py develop && \
     pip install . && \
