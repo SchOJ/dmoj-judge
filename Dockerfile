@@ -6,7 +6,7 @@ ENV JUDGE_SITE='site'
 
 RUN groupadd -r judge && \
     useradd -r -g judge judge && \
-    apt dist-upgrade -y && \
+    apt-get dist-upgrade -y && \
     apt-get -y update && \
     apt-get install -y --no-install-recommends python python2.7-dev python3 gcc g++ wget file nano vim git ca-certificates && \
     wget -q -O- https://bootstrap.pypa.io/get-pip.py | python
