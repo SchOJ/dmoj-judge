@@ -18,7 +18,6 @@ RUN apt-get clean && \
     pip install cython && \
     python setup.py develop && \
     pip install . && \
-    dmoj-autoconf >> /config.yml && \
     mkdir /problems
 
 ADD startup.sh /
