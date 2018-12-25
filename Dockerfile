@@ -14,7 +14,7 @@ RUN groupadd -r judge && \
 
 WORKDIR /judge
 RUN apt-get clean && \
-    git clone https://github.com/schoj/judge /judge && \
+    git clone https://github.com/schoj/judge /judge --depth=1 && \
     pip install cython && \
     python setup.py develop && \
     pip install . && \
