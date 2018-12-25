@@ -12,8 +12,8 @@ RUN groupadd -r judge && \
     wget -q -O- https://bootstrap.pypa.io/get-pip.py | python
 
 WORKDIR /judge
-RUN apt-get clean && \
-    git clone https://github.com/schoj/judge /judge && \
+RUN apt-get -y autoremove && apt-get clean && \
+    git clone https://github.com/schoj/judge /judge --depth=1 && \
     pip install cython && \
     python setup.py develop && \
     pip install . && \
