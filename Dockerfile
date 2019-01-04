@@ -24,13 +24,21 @@ RUN apt-get install -y haskell-platform openjdk-11-jdk-headless lua5.3 clang jul
     apt-get install -y crystal
 
 WORKDIR /judge
-<<<<<<< HEAD
+
 RUN apt-get autoremove -y && apt-get clean && \
     git clone https://github.com/schoj/judge /judge --depth=1 && \
     pip install cython && \
     python setup.py develop && \
     pip install . && \
     mkdir /problems
+
+RUN mkdir -p /home/judge/.cargo/
+ADD .cargo/config /home/judge/.cargo/
+ADD perlanguage/ /tmp/
+WORKDIR /tmp/rust
+RUN chown judge:judge -R /home/judge && \
+    chown judge:judge -R /tmp/rust && \
+    su judge -c 'cargo build'
 
 ADD startup.sh /
 
