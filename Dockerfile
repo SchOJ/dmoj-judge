@@ -10,15 +10,16 @@ RUN groupadd -r judge && \
     apt dist-upgrade -y && \
     apt-get -y update && \
     apt-get install -y --no-install-recommends python python2.7-dev python3 gcc g++ wget file nano vim git ca-certificates && \
-    wget -q -O- https://bootstrap.pypa.io/get-pip.py | python
+    wget -q -O- https://bootstrap.pypa.io/get-pip.py | python && \
+    apt-get autoremove -y && apt-get clean
 
 WORKDIR /judge
-RUN apt-get clean && \
-    git clone https://github.com/schoj/judge /judge && \
+RUN git clone https://github.com/schoj/judge /judge && \
+# We have a mirror here. Faster but not so up-to-date.
+#   git clone https://git.dev.tencent.com/outloudvi/schoj-judge /judge --depth=1 && \
     pip install cython && \
     python setup.py develop && \
     pip install . && \
-    dmoj-autoconf >> /config.yml && \
     mkdir /problems
 
 ADD startup.sh /
