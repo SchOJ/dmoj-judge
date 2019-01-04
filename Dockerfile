@@ -21,12 +21,12 @@ RUN apt-get install -y haskell-platform openjdk-11-jdk-headless lua5.3 clang jul
     curl -sL "https://keybase.io/crystal/pgp_keys.asc" | apt-key add - && \
     echo "deb https://dist.crystal-lang.org/apt crystal main" >> /etc/apt/sources.list && \
     apt-get update && \
-    apt-get install -y crystal
+    apt-get install -y crystal && \
+    apt-get autoremove -y && apt-get clean
 
 WORKDIR /judge
 
-RUN apt-get autoremove -y && apt-get clean && \
-    git clone https://github.com/schoj/judge /judge --depth=1 && \
+RUN git clone https://github.com/schoj/judge /judge --depth=1 && \
 # We have a mirror here. Faster but not so up-to-date.
 #   git clone https://git.dev.tencent.com/outloudvi/schoj-judge /judge --depth=1 && \
     pip install cython && \
