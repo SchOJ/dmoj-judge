@@ -1,5 +1,7 @@
 if [ ! -e /install_done ]; then
-  dmoj-autoconf > /config.yml
+  touch /config.yml
+  chown judge:judge /config.yml
+  su judge -c 'dmoj-autoconf' > /config.yml
   echo '
 problem_storage_root:
 - /problems
