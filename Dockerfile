@@ -27,6 +27,8 @@ WORKDIR /judge
 
 RUN apt-get autoremove -y && apt-get clean && \
     git clone https://github.com/schoj/judge /judge --depth=1 && \
+# We have a mirror here. Faster but not so up-to-date.
+#   git clone https://git.dev.tencent.com/outloudvi/schoj-judge /judge --depth=1 && \
     pip install cython && \
     python setup.py develop && \
     pip install . && \
