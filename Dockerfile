@@ -14,7 +14,7 @@ RUN groupadd -r judge && \
     apt-get autoremove -y && apt-get clean
 
 WORKDIR /judge
-RUN git clone https://github.com/DMOJ/judge-server /judge --depth=1
+RUN git clone https://github.com/schoj/judge /judge --depth=1
 RUN pip3 install wheel && \
     pip3 install -r requirements.txt -i https://mirrors.ustc.edu.cn/pypi/web/simple
 RUN python3 setup.py develop && \
