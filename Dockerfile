@@ -4,8 +4,7 @@ ENV JUDGE_NAME='judger'
 ENV JUDGE_KEY='The_key_you_set_in_admin_paneL'
 ENV JUDGE_SITE='site'
 
-RUN groupadd -r judge && \
-    useradd -r -g judge judge && \
+RUN useradd -U -r judge && \
     sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     apt-get dist-upgrade -y && \
