@@ -24,12 +24,6 @@ RUN git clone https://github.com/schoj/judge /judge --depth=1 && \
     python setup.py install && \
     mkdir /problems
 
-#RUN mkdir -p /home/judge/.cargo/
-#ADD .cargo/config /home/judge/.cargo/
-#ADD perlanguage/ /tmp/
-#WORKDIR /tmp/rust
-#RUN chown judge:judge -R /home/judge && \
-#    chown judge:judge -R /tmp/rust && \
-#    su judge -c 'cargo build'
-
 ADD startup.sh /
+
+CMD sh /startup.sh
