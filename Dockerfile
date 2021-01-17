@@ -7,7 +7,6 @@ ENV JUDGE_SITE='site'
 RUN pacman-key --init && \
     pacman-key --populate && \
     useradd -r -m judge && \
-    #sed -i 's/archive.ubuntu.com/opentuna.cn/g' /etc/apt/sources.list && \
     pacman -Syu --noconfirm python python2 python-pip nano vim git cython && \
     locale-gen
 
