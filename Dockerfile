@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 ENV JUDGE_NAME='judger'
 ENV JUDGE_KEY='The_key_you_set_in_admin_paneL'
@@ -9,7 +9,7 @@ RUN useradd -m -U judge && \
     sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     apt-get dist-upgrade -y && \
     apt-get -y update && \
-    apt-get install -y --no-install-recommends python python3-dev python3 gcc g++ wget file nano vim git ca-certificates python3-pip build-essential libseccomp-dev python3-setuptools && \
+    apt-get install -y --no-install-recommends python3 python3-dev gcc g++ wget file nano vim git ca-certificates python3-pip build-essential libseccomp-dev python3-setuptools && \
     apt-get autoremove -y && apt-get clean
 
 WORKDIR /judge
